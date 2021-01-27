@@ -30,11 +30,12 @@ public class ServidorController implements Runnable{
 	public void run() {
 		ServerSocket socketServidor = null;
 		Socket socket = null, socketDestinatario =null;
-		ObjectOutputStream mensajeReenvio = null;
+		ObjectOutputStream mensajeReenvio = null;	
 		try {
-			socketServidor = new ServerSocket(9999);
+			
 			String nombre, ip, mensaje;
 			Mensaje mensajeRecibido;
+			socketServidor = new ServerSocket(9999);
 			
 			while (true) {
 				socket = socketServidor.accept();
@@ -49,24 +50,23 @@ public class ServidorController implements Runnable{
 				areaChat.appendText("\n"+nombre + ": " + mensaje + " para " + ip);
 				
 				//Reenviar mensaje
-				/*
+				
 				Socket enviaDestinatario = new Socket(ip, 9090);
 				
 				ObjectOutputStream paqueteReenvio = new ObjectOutputStream(enviaDestinatario.getOutputStream());
 				
-				paqueteReenvio.writeObject(paqueteReenvio);
+				paqueteReenvio.writeObject(mensajeRecibido);
 				
 				paqueteReenvio.close();
 				
-				enviaDestinatario.close();
+				paqueteReenvio.close();
 				
 				socket.close();
-				*/
+				
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} 
-		
 	}
 }
 

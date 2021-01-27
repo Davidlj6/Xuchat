@@ -8,9 +8,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Cliente extends Application {
-	//Carga la vista
+
 	@Override
 	public void start(Stage primaryStage) {
+		
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/vista/SampleCliente.fxml"));
 			Scene scene = new Scene(root,900,600);

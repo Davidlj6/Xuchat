@@ -26,7 +26,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-class ClienteController implements Runnable {
+public class ClienteController implements Runnable {
 	
 	@FXML private ImageView btnExit, btnEnviar;
 	@FXML private Pane pInicio, pChat;
@@ -62,25 +62,21 @@ class ClienteController implements Runnable {
 	*/
 	
 	public ClienteController() {
-		Thread hilo = new Thread(this);
-		hilo.start();
+		Thread hilo1 = new Thread(this);
+		hilo1.start();
 	}
 	
-	/*
-	@FXML
-	public void initialize() {
-		
-	}
-	 */
 
 	@Override
 	public void run() {
 		try {
+			
 			ServerSocket servidorCliente = new ServerSocket(9090);
 			Socket cliente;
 			Mensaje mensajeRecibido;
 				
 			while (true) {
+				
 				cliente = servidorCliente.accept();
 					
 				ObjectInputStream flujoEntrada = new ObjectInputStream(cliente.getInputStream());
@@ -89,9 +85,11 @@ class ClienteController implements Runnable {
 					
 				campoChat.appendText("\n" + mensajeRecibido.getNombre() + ": " + mensajeRecibido.getMensaje());
 			}
+		
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
-		}		
+		}	
+				
 	}
 	
 	
@@ -154,6 +152,4 @@ class ClienteController implements Runnable {
 		} 
 	}
 
-
-	
 }
